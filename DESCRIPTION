@@ -4,10 +4,10 @@ Title: FARS DATA FUNCTIONS (Title Case)
 Version: 0.1.0
 Author: Satyajit Sarangdhar
 Maintainer: <satyajit1512@gmail.com>
-Description:Functions to handle fars data
+Description:Functions to handle fars data.
 License: CC0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Imports: knitr,rmarkdown,dplyr,tidyr,readr,magrittr,graphics,maps
+Imports: dplyr,tidyr,readr,graphics,maps,testhat,tibble
 VignetteBuilder: knitr
