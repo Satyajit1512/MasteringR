@@ -1,0 +1,122 @@
+---
+title: "Package Details"
+author: "Satyajit Sarangdhar"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\Package Details{Package Details}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The vignetter aims to elaborate of this package.It uses the `US National Highway Traffic Safety Administration's Fatality Analysis Reporting System` data and has functions which help in summarizing and mapping the data onto US states.
+
+
+
+```{r knitr_config,cache=FALSE,include=FALSE}
+library(dplyr)
+library(knitr)
+opts_knit$set(root.dir = '../data')
+```
+
+## Package Info
+
+The package has 5 functions.
+
+1. fars_read
+2. make_filename
+3. fars_read_years
+4. fars_summarize_years
+5. fars_map_state
+
+```{r sourcing_code_file,messages=FALSE,warnings=FALSE,echo=FALSE,include=TRUE}
+source('../R/fars_functions.R')
+```
+
+
+## Read csv files with fars_read()
+This function reads data from a csv file or a zipped file with csv data,if it exists.
+If the file doesnt exist it gives an error message saying the `file filename does not exist`.
+
+The function takes in a string containing Path to the file if file is not stored in current directory 
+and filename if the csv file is stored in current directory.
+
+Below is output for first 5*10 matrix subset of the data for the year 2013 read using the csv file.
+
+```{r,fars_read}
+file_2013<-fars_read('accident_2013.csv.bz2')
+knitr::kable(head(file_2013)[,1:10])
+```
+
+
+## Make data file names with make_filename()
+
+This function reads a year `character` or `integer` and creates a filename for a csv type zipped file containing the accident  data.
+
+The output is a string in the following format `accident_year.csv.bz`
+
+```{r,make_file}
+make_filename(2013)
+```
+
+
+## Read data for set of years using fars_read_years()
+
+This function reads a vector  `character` or `integer` of years and returns a list of dataframes containing the
+month of accident for each accident in the given year.If for any reason the program is unable to read
+data for a paricular year an warning  `invalid year: year` is displayed and the `NULL` is returned for the given year.
+
+The function takes in a vector of years.It first uses the make_filename function to create a filename.
+The looks for a file with said filename and reads data from it using fars_read, to retain only the month and year column before moving onto next year.
+
+As described if the program is unable to read data for particular year it throws an warning message and returns a `NULL` for the given year. 
+
+```{r,fars_read_years,messages=FALSE,include=TRUE}
+data_years<-fars_read_years(2013:2015)
+str(data_years)
+```
+
+
+## Summarize monthly accident data for set of years using fars_summarize_years()
+
+This function reads a vector `character`or `integer` of years and returns a dataframe summarizing total number of accidents for each month for given year in set of years. A warning message will be thrown if the program cannot find data file for a particular year.
+
+The function takes in a vector of years.Uses fars_read_year to create a list of dataframes containing accident month and year data.Groups data by year and month and then summarizes it using dplyr functions and then creates dataframe with months as rows and a column for each year using spread function.
+
+A warning message will be thrown if the program cannotfind data file for a particular year `invalid year: year`. 
+This behavior is derived from the fars_read_years function
+
+As described if the program is unable to read data for particular year it throws an warning message and returns a `NULL` for the given year. 
+
+```{r,fars_summarize_years,messages=FALSE,include=TRUE}
+summarize_years<-fars_summarize_years(2013:2015)
+summarize_years
+```
+
+## Map accident data onto states using fars_map_state()
+
+The function reads a state number and the year and plots the accident areas in the state on a map.
+If the state number entered doesnt belong to a valid state in US an error is thrown saying `invalid STATE number: state num`  and program stops execution.
+
+The function takes in state number and year, then using both and make_filename and fars_read reads in
+data for particular year and then filters it out for a particular state num using dply's filter function.If a invalid state num is entered the function throws an error and stops the program.
+
+This data is then checked for any spurious values of longitude and latitude which are replaced by NAs.
+Then using the maps package's map function the US state area is plotted and using the graphics package's
+points function the accident areas marked on the map.
+
+The program will also stop execution if a data file for the particular year is not found in the current directory.This behavior is derived from the fars_read function of the package.
+If there is no accident given year in the particular state then the message `no accidents to plot` is displayed.
+
+```{r,fars_map_state,messages=FALSE}
+
+fars_map_state(22,2013)
+
+```
+
+
+
+
+
+
+
