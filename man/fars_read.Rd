@@ -23,7 +23,7 @@ The function is a wrapper for read_csv from the readr package. The function thro
 with given filename is not found and stops program execution.
 }
 \examples{
-fars_read('myfile.csv.bz')
-fars_read('myfile.csv')
+fars_read('accident_2013.csv.bz2')
+
 
 }

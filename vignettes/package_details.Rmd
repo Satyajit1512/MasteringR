@@ -4,8 +4,8 @@ author: "Satyajit Sarangdhar"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\Package Details{Package Details}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{"Package Details"}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -16,7 +16,7 @@ The vignetter aims to elaborate of this package.It uses the `US National Highway
 ```{r knitr_config,cache=FALSE,include=FALSE}
 library(dplyr)
 library(knitr)
-opts_knit$set(root.dir = '../data')
+#opts_knit$set(root.dir = '../data')
 ```
 
 ## Package Info

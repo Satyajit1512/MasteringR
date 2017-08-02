@@ -2,12 +2,15 @@ Package: First
 Type: Package
 Title: FARS DATA FUNCTIONS (Title Case)
 Version: 0.1.0
+Depends: R (>= 2.10)
 Author: Satyajit Sarangdhar
 Maintainer: <satyajit1512@gmail.com>
-Description:Functions to handle fars data.
+Description: Functions to handle fars data.
 License: CC0
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression:bzip2
 RoxygenNote: 6.0.1
-Imports: dplyr,tidyr,readr,graphics,maps,testthat,tibble,knitr
+Imports: dplyr,tidyr,readr,graphics,maps,magrittr,knitr
 VignetteBuilder: knitr
+Suggests: testthat

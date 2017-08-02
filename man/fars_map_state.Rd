@@ -32,7 +32,7 @@ the fars_read function of the package.
 If there is no accident given year in the particular state then the message (\code{no accidents to plot}) is displayed.
 }
 \examples{
-fars_map_state('22','2013')
-fars_map_state(22,2015)
+fars_map_state(22,2013)
+
 
 }

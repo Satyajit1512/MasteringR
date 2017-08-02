@@ -23,3 +23,7 @@ and year data.Groups data by year and month and then summarizes it using dplyr f
 for each year using spread function.A warning message will be thrown if the program cannot
 find data file for a particular year (\code{invalid year: year}). This behavior is derived from the fars_read_years function
 }
+\examples{
+fars_summarize_years(2013:2015)
+
+}

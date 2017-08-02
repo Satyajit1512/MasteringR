@@ -23,3 +23,7 @@ The function takes in a vector of years.It first uses the make_filename function
 and reads data from it using fars_read, to retain only the month and year column before moving onto next year.
 As described if the program is unable to read data for particular year it throws an warning message and returns a NULL for that year
 }
+\examples{
+fars_read_years(2013:2015)
+
+}

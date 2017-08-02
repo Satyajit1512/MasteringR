@@ -16,15 +16,16 @@
 #' @importFrom dplyr tbl_df
 #'
 #' @examples
-#' fars_read('myfile.csv.bz')
-#' fars_read('myfile.csv')
+#' fars_read('accident_2013.csv.bz2')
+#'
 #'
 #' @export
 fars_read <- function(filename) {
-        if(!file.exists(filename))
-                stop("file '", filename, "' does not exist")
+        file<-system.file("extdata", filename, package="First")
+        #if(!file.exists(filename))
+        #        stop("file '", file, "' does not exist")
         data <- suppressMessages({
-                readr::read_csv(filename, progress = FALSE)
+                readr::read_csv(file, progress = FALSE)
         })
         dplyr::tbl_df(data)
 }
@@ -47,8 +48,9 @@ fars_read <- function(filename) {
 #'
 #' @export
 make_filename <- function(year) {
-        year <- as.integer(year)
+        year<- as.integer(year)
         sprintf("accident_%d.csv.bz2", year)
+
 }
 
 #' Make a list of dataframe containing month and year data for accidents.
@@ -148,11 +150,10 @@ fars_summarize_years <- function(years) {
 #' @importFrom maps map
 #'
 #' @examples
-#' fars_map_state('22','2013')
-#' fars_map_state(22,2015)
+#' fars_map_state(22,2013)
+#'
 #'
 #' @export
-
 fars_map_state <- function(state.num, year) {
         filename <- make_filename(year)
         data <- fars_read(filename)
