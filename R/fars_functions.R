@@ -71,7 +71,6 @@ make_filename <- function(year) {
 #' @importFrom dplyr mutate select
 #'
 #' @examples
-#' fars_read_years(c('2013','2014,'2015'))
 #' fars_read_years(2013:2015)
 #'
 #' @export
@@ -109,7 +108,6 @@ fars_read_years <- function(years) {
 #' @importFrom tidyr spread
 #'
 #' @examples
-#' fars_summarize_years(c('2013','2014,'2015'))
 #' fars_summarize_years(2013:2015)
 #'
 #' @export
