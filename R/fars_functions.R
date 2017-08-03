@@ -1,3 +1,5 @@
+globalVariables(c("STATE","n","year","MONTH"))
+
 #' Read csv data from file
 #'
 #' This function reads data from a csv file or a zipped file with csv data,if it exists.

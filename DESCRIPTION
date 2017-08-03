@@ -11,6 +11,6 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression:bzip2
 RoxygenNote: 6.0.1
-Imports: dplyr,tidyr,readr,graphics,maps,magrittr,knitr
+Imports: dplyr,tidyr,readr,graphics,maps,magrittr
 VignetteBuilder: knitr
-Suggests: testthat
+Suggests: testthat,knitr
